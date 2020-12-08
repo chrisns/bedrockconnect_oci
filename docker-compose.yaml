@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  bedrock:
+    build: .
+    restart: always
+    ports:
+      - "19132:19132/tcp"
+  dns:
+    restart: always
+    image: andyshinn/dnsmasq:2.81
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    cap_add:
+      - NET_ADMIN
