@@ -47,7 +47,6 @@ resource "oci_identity_compartment" "bedrockconnect" {
   name           = "bedrockconnect"
 }
 
-
 data "oci_identity_availability_domains" "ads" {
   compartment_id = oci_identity_compartment.bedrockconnect.id
 }
@@ -140,16 +139,16 @@ resource "oci_core_security_list" "bedrockconnect" {
     }
   }
 
-  ingress_security_rules {
-    description = "ssh"
-    protocol    = "6"
-    source      = "0.0.0.0/0"
+  // ingress_security_rules {
+  //   description = "ssh"
+  //   protocol    = "6"
+  //   source      = "0.0.0.0/0"
 
-    tcp_options {
-      max = "22"
-      min = "22"
-    }
-  }
+  //   tcp_options {
+  //     max = "22"
+  //     min = "22"
+  //   }
+  // }
 
   ingress_security_rules {
     description = "minecraft list server"
