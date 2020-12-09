@@ -111,7 +111,9 @@ resource "oci_core_public_ip" "bedrockconnect_reserved_ip" {
   lifetime       = "RESERVED"
   private_ip_id  = data.oci_core_private_ips.bedrockconnect_private_ip.private_ips[0].id
 }
-
+output "public_ip" {
+  value = oci_core_public_ip.bedrockconnect_reserved_ip.ip_address
+}
 data "oci_core_private_ips" "bedrockconnect_private_ip" {
   ip_address = oci_core_instance.bedrockconnect.private_ip
   subnet_id  = oci_core_subnet.bedrockconnect.id
